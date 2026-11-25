@@ -13,7 +13,7 @@ const htmlPath = path.resolve(process.cwd(), 'index.html');
 const html = fs.readFileSync(htmlPath, 'utf8');
 
 test('index.html contains required editable config constants', () => {
-  assert.match(html, /const BANNER_URL\s*=\s*"Bunner\.jpg";/);
+  assert.match(html, /const BANNER_URL\s*=\s*"Newbunner\.jpg";/);
   assert.match(
     html,
     /const APK_URL\s*=\s*\n?\s*"https:\/\/pub-025bdd4f665b4e54a87bfcedeed54a91\.r2\.dev\/Apk%20link\/base%20\(2\)\.apk";/
