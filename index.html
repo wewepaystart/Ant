@@ -158,8 +158,46 @@
         }
       }
 
+      /* Desktop Ambient Backdrop */
+      .ambient-backdrop {
+        display: none;
+      }
+
+      @media (min-width: 481px) {
+        .ambient-backdrop {
+          display: block;
+          position: fixed;
+          inset: 0;
+          z-index: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+
+        .ambient-backdrop-img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: blur(46px) saturate(1.25) brightness(0.45);
+          transform: scale(1.15);
+          opacity: 0.65;
+        }
+
+        .ambient-backdrop-scrim {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(
+            circle at 50% 45%,
+            rgba(18, 3, 7, 0.25) 0%,
+            rgba(8, 1, 3, 0.88) 78%,
+            rgba(5, 1, 2, 0.96) 100%
+          );
+        }
+      }
+
       /* Main Layout */
       .page-shell {
+        position: relative;
+        z-index: 1;
         min-height: 100vh;
         min-height: 100dvh;
         display: flex;
@@ -181,7 +219,9 @@
         justify-content: center;
         overflow: hidden;
         background: #140206;
-        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.65);
+        border-left: 1px solid rgba(251, 191, 36, 0.16);
+        border-right: 1px solid rgba(251, 191, 36, 0.16);
+        box-shadow: 0 24px 72px rgba(0, 0, 0, 0.78);
       }
 
       .poster-img {
@@ -199,8 +239,9 @@
         inset: 0;
         background: linear-gradient(
           to bottom,
-          rgba(16, 2, 5, 0) 65%,
-          rgba(16, 2, 5, 0.72) 100%
+          rgba(12, 2, 5, 0) 68%,
+          rgba(12, 2, 5, 0.56) 86%,
+          rgba(9, 2, 4, 0.92) 100%
         );
         pointer-events: none;
       }
@@ -294,8 +335,9 @@
       .app-brand {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         min-width: 0;
+        flex: 1;
       }
 
       .app-icon {
@@ -308,13 +350,42 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
       }
 
+      .app-brand-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
+        flex: 1;
+      }
+
       .app-name {
-        font-size: 17px;
+        font-size: 16px;
         font-weight: 700;
+        line-height: 1.2;
         color: var(--text-light);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+
+      .app-subtitle {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        font-weight: 500;
+        color: #9ca3af;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+
+      .verified-icon {
+        width: 12px;
+        height: 12px;
+        color: #fbbf24;
+        flex-shrink: 0;
       }
 
       .bar-download-btn {
@@ -374,11 +445,95 @@
         color: #f3f4f6;
       }
 
+      /* Burmese Android Install Guide */
+      .install-guide {
+        width: 100%;
+        max-width: 472px;
+        padding: 20px 18px 28px;
+        background: linear-gradient(180deg, #0d0205 0%, #090d18 100%);
+        border-left: 1px solid rgba(251, 191, 36, 0.14);
+        border-right: 1px solid rgba(251, 191, 36, 0.14);
+      }
+
+      .install-guide-title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 15px;
+        font-weight: 700;
+        color: #fde68a;
+        margin-bottom: 14px;
+      }
+
+      .install-steps {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .install-step {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(251, 191, 36, 0.14);
+      }
+
+      .step-num {
+        width: 24px;
+        height: 24px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--gold-start), var(--gold-end));
+        color: #111111;
+        font-size: 12px;
+        font-weight: 800;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .step-text {
+        font-size: 13px;
+        line-height: 1.55;
+        color: #e5e7eb;
+      }
+
+      .step-text strong {
+        color: #fbbf24;
+        font-weight: 600;
+      }
+
       @media (max-width: 480px) {
         .poster-stage {
           max-width: 100%;
           min-height: 480px;
+          border-left: none;
+          border-right: none;
           box-shadow: none;
+        }
+
+        .install-guide {
+          max-width: 100%;
+          border-left: none;
+          border-right: none;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .sticky-bar-inner {
+          padding: 0 12px;
+          gap: 10px;
+        }
+
+        .bar-download-btn {
+          height: 42px;
+          padding: 0 14px;
+          font-size: 12px;
         }
       }
     </style>
@@ -405,6 +560,16 @@
         </div>
       </div>
     </aside>
+
+    <div class="ambient-backdrop" aria-hidden="true">
+      <img
+        id="ambientBackdropImg"
+        class="ambient-backdrop-img"
+        src="Newbunner.jpg"
+        alt=""
+      />
+      <div class="ambient-backdrop-scrim"></div>
+    </div>
 
     <main class="page-shell">
       <section class="poster-stage" aria-label="App showcase">
@@ -440,6 +605,48 @@
           </a>
         </div>
       </section>
+
+      <section class="install-guide" aria-label="Android Install Guide">
+        <h2 class="install-guide-title">
+          <svg
+            class="verified-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            <polyline points="9 12 11 14 15 10" />
+          </svg>
+          <span>Android တွင် Install လုပ်နည်း</span>
+        </h2>
+        <ol class="install-steps">
+          <li class="install-step">
+            <span class="step-num">၁</span>
+            <p class="step-text">
+              အပေါ်မှ <strong>Download</strong> သို့မဟုတ် အောက်ဘားမှ
+              <strong>DOWNLOAD APP</strong> ခလုတ်ကို နှိပ်၍ APK ဖိုင်ကို ဒေါင်းလုဒ်ဆွဲပါ။
+            </p>
+          </li>
+          <li class="install-step">
+            <span class="step-num">၂</span>
+            <p class="step-text">
+              Browser ၏ <strong>Downloads</strong> သို့မဟုတ် Notification bar မှ ဒေါင်းလုဒ်ပြီးသော
+              APK ဖိုင်ကို နှိပ်ဖွင့်ပါ။
+            </p>
+          </li>
+          <li class="install-step">
+            <span class="step-num">၃</span>
+            <p class="step-text">
+              Android မှ ခွင့်ပြုချက်တောင်းလာပါက <strong>Allow from this source</strong> ကို
+              ဖွင့်ပေးပြီး <strong>Install</strong> ကို နှိပ်ပါ။
+            </p>
+          </li>
+        </ol>
+      </section>
     </main>
 
     <div id="downloadToast" class="download-toast" role="status" aria-live="polite">
@@ -471,7 +678,25 @@
             src="antlogo.jpg"
             alt="ပုရွတ်ဆိက် Icon"
           />
-          <span id="appNameText" class="app-name">ပုရွတ်ဆိက်</span>
+          <div class="app-brand-meta">
+            <span id="appNameText" class="app-name">ပုရွတ်ဆိက်</span>
+            <span class="app-subtitle">
+              <svg
+                class="verified-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <polyline points="9 12 11 14 15 10" />
+              </svg>
+              <span>Official Android APK</span>
+            </span>
+          </div>
         </div>
         <a
           id="barDownloadBtn"
@@ -507,6 +732,7 @@
 
       (function initApp() {
         const heroBannerImg = document.getElementById("heroBannerImg");
+        const ambientBackdropImg = document.getElementById("ambientBackdropImg");
         const appIconImg = document.getElementById("appIconImg");
         const appNameText = document.getElementById("appNameText");
         const heroDownloadBtn = document.getElementById("heroDownloadBtn");
@@ -520,6 +746,9 @@
         if (heroBannerImg) {
           heroBannerImg.src = BANNER_URL;
           heroBannerImg.alt = APP_NAME + " Banner";
+        }
+        if (ambientBackdropImg) {
+          ambientBackdropImg.src = BANNER_URL;
         }
         if (appIconImg) {
           appIconImg.src = ICON_URL;
