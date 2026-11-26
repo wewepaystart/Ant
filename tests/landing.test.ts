@@ -13,13 +13,13 @@ const htmlPath = path.resolve(process.cwd(), 'index.html');
 const html = fs.readFileSync(htmlPath, 'utf8');
 
 test('index.html contains required editable config constants', () => {
-  assert.match(html, /const BANNER_URL\s*=\s*"Newbunner\.jpg";/);
   assert.match(
     html,
     /const APK_URL\s*=\s*\n?\s*"https:\/\/pub-025bdd4f665b4e54a87bfcedeed54a91\.r2\.dev\/Apk%20link\/base%20\(2\)\.apk";/
   );
   assert.match(html, /const ICON_URL\s*=\s*"antlogo\.jpg";/);
   assert.match(html, /const APP_NAME\s*=\s*"ပုရွတ်ဆိက်";/);
+  assert.match(html, /const SCREENSHOT_URLS\s*=\s*\[/);
 });
 
 test('index.html includes viewport, title, and Open Graph tags', () => {
@@ -31,10 +31,14 @@ test('index.html includes viewport, title, and Open Graph tags', () => {
   assert.match(html, /property="og:image"/);
 });
 
-test('index.html includes both download buttons, toast text, and Telegram notify hook', () => {
-  assert.match(html, /id="heroDownloadBtn"[\s\S]*?download/);
-  assert.match(html, /id="barDownloadBtn"[\s\S]*?download/);
-  assert.match(html, /DOWNLOAD APP/);
+test('index.html includes Play Store Install button, sections, toast text, and Telegram notify hook', () => {
+  assert.match(html, /id="installBtn"[\s\S]*?download/);
+  assert.match(html, />Install</);
+  assert.doesNotMatch(html, /DOWNLOAD APP/);
+  assert.match(html, /About this app/);
+  assert.match(html, /Data safety/);
+  assert.match(html, /Ratings and reviews/);
+  assert.match(html, /id="screenshotsTrack"/);
   assert.match(
     html,
     /Download starting\.\.\. If blocked, allow installs from this browser in Android settings\./
