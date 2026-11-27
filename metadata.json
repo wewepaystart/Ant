@@ -1,6 +1,6 @@
 {
-  "name": "ပုရွတ်ဆိက်",
-  "description": "ပုရွတ်ဆိက် Android App Download Landing Page",
+  "name": "တောဝက်",
+  "description": "တောဝက် Android App Download Landing Page",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

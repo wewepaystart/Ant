@@ -15,10 +15,10 @@ const html = fs.readFileSync(htmlPath, 'utf8');
 test('index.html contains required editable config constants', () => {
   assert.match(
     html,
-    /const APK_URL\s*=\s*\n?\s*"https:\/\/pub-025bdd4f665b4e54a87bfcedeed54a91\.r2\.dev\/Apk%20link\/base%20\(2\)\.apk";/
+    /const APK_URL\s*=\s*\n?\s*"https:\/\/pub-025bdd4f665b4e54a87bfcedeed54a91\.r2\.dev\/Apk%20link\/%E1%80%90%E1%80%B1%E1%80%AC%E1%80%9D%E1%80%80%E1%80%BA\.apk";/
   );
-  assert.match(html, /const ICON_URL\s*=\s*"antlogo\.jpg";/);
-  assert.match(html, /const APP_NAME\s*=\s*"ပုရွတ်ဆိက်";/);
+  assert.match(html, /const ICON_URL\s*=\s*"tawpgi\.png";/);
+  assert.match(html, /const APP_NAME\s*=\s*"တောဝက်";/);
   assert.match(html, /const SCREENSHOT_URLS\s*=\s*\[/);
 });
 
